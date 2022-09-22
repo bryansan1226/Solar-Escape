@@ -16,43 +16,30 @@ var player,
   vec,
   path,
   hit,
-  wasHit=0,
+  wasHit = 0,
   goBox,
   goText,
-  lives=3,
-  gameOver="false";
+  lives = 3,
+  gameOver = "false";
 class GameScene extends Phaser.Scene {
   constructor() {
     super("playGame");
   }
 
   preload() {
-    this.load.image(
-      "background",
-      "/Projects/phaserProject/assets/images/background.png"
-    );
-    this.load.image(
-      "platform",
-      "/Projects/phaserProject/assets/images/platform.png"
-    );
-    this.load.image(
-      "glasses",
-      "/Projects/phaserProject/assets/images/glasses.png"
-    );
-    this.load.image("sun", "/Projects/phaserProject/assets/images/sun.png");
-    this.load.spritesheet(
-      "player",
-      "/Projects/phaserProject/assets/images/player.png",
-      {
-        frameWidth: 64,
-        frameHeight: 64,
-      }
-    );
-    this.load.image("hBox", "/Projects/phaserProject/assets/images/hBox.png");
-    this.load.image("hText", "/Projects/phaserProject/assets/images/hText.png");
-    this.load.image("pText", "/Projects/phaserProject/assets/images/pText.png");
-    this.load.image("goText", "/Projects/phaserProject/assets/images/gameOver.png");
-    this.load.audio("hit", ["/Projects/phaserProject/assets/sounds/hit.wav"]);
+    this.load.image("background", "./assets/images/background.png");
+    this.load.image("platform", "./assets/images/platform.png");
+    this.load.image("glasses", "./assets/images/glasses.png");
+    this.load.image("sun", "./assets/images/sun.png");
+    this.load.spritesheet("player", "./assets/images/player.png", {
+      frameWidth: 64,
+      frameHeight: 64,
+    });
+    this.load.image("hBox", "./assets/images/hBox.png");
+    this.load.image("hText", "./assets/images/hText.png");
+    this.load.image("pText", "./assets/images/pText.png");
+    this.load.image("goText", "./assets/images/gameOver.png");
+    this.load.audio("hit", ["./assets/sounds/hit.wav"]);
   }
 
   create() {
@@ -140,7 +127,7 @@ class GameScene extends Phaser.Scene {
     });
     this.physics.world.enable(sun);
 
-    hit=this.sound.add("hit",{loop:false});
+    hit = this.sound.add("hit", { loop: false });
     this.physics.add.collider(player, sun, getHit, null, this);
     function getHit() {
       if (wasHit < this.time.now) {
@@ -148,11 +135,10 @@ class GameScene extends Phaser.Scene {
         hit.play();
         lives -= 1;
         livesText.setText("Lives: " + lives);
-       // sun.disableBody(true, true);
+        // sun.disableBody(true, true);
         wasHit = this.time.now + 1500;
       }
     }
-
   }
 
   update() {
@@ -199,18 +185,20 @@ class GameScene extends Phaser.Scene {
     if (keyY.isDown) {
       if (pOpened == "true") {
         pOpened = "false";
-        lives=3;
-        gameOver="false";
+        lives = 3;
+        gameOver = "false";
         this.scene.start("TitleScreen");
       }
     }
 
     this.input.keyboard.on("keydown", () => this.closeHelp(hBox));
-    if (lives==0){
-        if(gameOver!="true"){goBox=this.add.image(400,300,"hBox");
-        goText=this.add.image(400,300,"goText");
+    if (lives == 0) {
+      if (gameOver != "true") {
+        goBox = this.add.image(400, 300, "hBox");
+        goText = this.add.image(400, 300, "goText");
         console.log("game over");
-        gameOver="true";}
+        gameOver = "true";
+      }
     }
   }
 

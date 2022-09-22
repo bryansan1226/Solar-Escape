@@ -5,24 +5,12 @@ class TitleScreen extends Phaser.Scene {
   }
 
   preload() {
-    this.load.image(
-      "background",
-      "/Projects/phaserProject/assets/images/background.png"
-    );
-    this.load.image("title", "/Projects/phaserProject/assets/images/title.png");
-    this.load.image(
-      "start",
-      "/Projects/phaserProject/assets/images/startButton.png"
-    );
-    this.load.image("intro", "/Projects/phaserProject/assets/images/intro.png");
-    this.load.image(
-      "instructions",
-      "/Projects/phaserProject/assets/images/instructions.png"
-    );
-    this.load.image(
-      "sanchezName",
-      "/Projects/phaserProject/assets/images/sanchezName.png"
-    );
+    this.load.image("background", "./assets/images/background.png");
+    this.load.image("title", "./assets/images/title.png");
+    this.load.image("start", "./assets/images/startButton.png");
+    this.load.image("intro", "./assets/images/intro.png");
+    this.load.image("instructions", "./assets/images/instructions.png");
+    this.load.image("sanchezName", "./assets/images/sanchezName.png");
   }
   create() {
     console.log("In game.js");
